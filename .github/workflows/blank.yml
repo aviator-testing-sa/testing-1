@@ -35,10 +35,39 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v4
+      - if: inputs.release_cut_id != ''
+        name: Sync workflow run ID via Aviator API
+        uses: fjogeleit/http-request-action@v1
+        with:
+          url: '<https://api.aviator.co/api/v1/sync-build-github-action>'
+          method: 'POST'
+          bearerToken: ${{ secrets.AVIATOR_API_TOKEN }}
+          data: '{"release_cut_id": "${{ inputs.release_cut_id }}", "workflow_run_id": "${{ github.run_id }}"}'
+    
+      - name: Checkout the repository
+        uses: actions/checkout@v4
+        with:
+          # if custom commit_sha is not defined, this should fall back to the head branch
+          ref: "${{ inputs.commit_sha }}"
+          lfs: true
+          submodules: 'recursive'
+  deploy:
+    runs-on: ubuntu-latest
 
-      # Runs a single command using the runners shell
-      - name: force failure
-        run: exit 1
-
+    steps:
+      - if: inputs.deployment_id != ''
+        name: Sync workflow run ID via Aviator API
+        uses: fjogeleit/http-request-action@v1
+        with:
+          url: '<https://api.aviator.co/api/v1/sync-deploy-github-action>'
+          method: 'POST'
+          bearerToken: ${{ secrets.AVIATOR_API_TOKEN }}
+          data: '{"deployment_id": "${{ inputs.deployment_id }}", "workflow_run_id": "${{ github.run_id }}"}'
+          
+      - name: Checkout the repository
+        uses: actions/checkout@v4
+        with:
+          # if custom commit_sha is not defined, this should fall back to the head branch
+          ref: "${{ inputs.commit_sha }}"
+          lfs: true
+          submodules: 'recursive'
