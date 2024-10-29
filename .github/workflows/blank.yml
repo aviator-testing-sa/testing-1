@@ -12,6 +12,19 @@ on:
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+    inputs:
+      aviator_release_cut_id:
+        description: "Database ID of release cut"
+        required: false
+        type: string
+      aviator_release_cut_commit_hash:
+        description: "Commit SHA, branch name, or tag of the HEAD to be built"
+        required: false
+        type: string
+      aviator_release_candidate_version:
+        description: "Name of the version"
+        required: true
+        type: string
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -28,3 +41,4 @@ jobs:
       # Runs a single command using the runners shell
       - name: force failure
         run: exit 1
+
