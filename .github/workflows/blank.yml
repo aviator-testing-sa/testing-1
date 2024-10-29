@@ -71,3 +71,6 @@ jobs:
           ref: "${{ inputs.commit_sha }}"
           lfs: true
           submodules: 'recursive'
+
+      - name: force failure
+        run: exit 1
