@@ -42,7 +42,7 @@ jobs:
           url: 'https://7045-50-202-219-97.ngrok-free.app/api/v1/sync-build-github-action'
           method: 'POST'
           bearerToken: ${{ secrets.AVIATOR_API_TOKEN }}
-          data: '{"aviator_release_cut_id": "${{ inputs.aviator_release_cut_id }}", "workflow_run_id": "${{ github.run_id }}"}'
+          data: '{"release_cut_id": "${{ inputs.aviator_release_cut_id }}", "workflow_run_id": "${{ github.run_id }}"}'
     
       - name: Checkout the repository
         uses: actions/checkout@v4
