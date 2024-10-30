@@ -35,7 +35,7 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - if: inputs.release_cut_id != ''
+      - if: inputs.aviator_release_cut_id != ''
         name: Sync workflow run ID via Aviator API
         uses: fjogeleit/http-request-action@v1
         with:
