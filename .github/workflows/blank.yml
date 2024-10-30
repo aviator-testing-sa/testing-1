@@ -37,7 +37,7 @@ jobs:
     steps:
       # - if: inputs.aviator_release_cut_id != ''
       - name: show pipeline number
-        run: echo "name is $(inputs.aviator_release_cut_id)"
+        run: echo "name is ${{ inputs.aviator_release_cut_id }}"
       - name: Sync workflow run ID via Aviator API
         uses: fjogeleit/http-request-action@v1
         with:
