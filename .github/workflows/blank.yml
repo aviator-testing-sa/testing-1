@@ -39,7 +39,7 @@ jobs:
         name: Sync workflow run ID via Aviator API
         uses: fjogeleit/http-request-action@v1
         with:
-          url: 'https://7045-50-202-219-97.ngrok-free.app'
+          url: 'https://7045-50-202-219-97.ngrok-free.app/api/v1/sync-build-github-action'
           method: 'POST'
           bearerToken: ${{ secrets.AVIATOR_API_TOKEN }}
           data: '{"release_cut_id": "${{ inputs.release_cut_id }}", "workflow_run_id": "${{ github.run_id }}"}'
@@ -55,22 +55,22 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - if: inputs.deployment_id != ''
-        name: Sync workflow run ID via Aviator API
-        uses: fjogeleit/http-request-action@v1
-        with:
-          url: 'https://7045-50-202-219-97.ngrok-free.app'
-          method: 'POST'
-          bearerToken: ${{ secrets.AVIATOR_API_TOKEN }}
-          data: '{"deployment_id": "${{ inputs.deployment_id }}", "workflow_run_id": "${{ github.run_id }}"}'
+      # - if: inputs.deployment_id != ''
+      #   name: Sync workflow run ID via Aviator API
+      #   uses: fjogeleit/http-request-action@v1
+      #   with:
+      #     url: 'https://7045-50-202-219-97.ngrok-free.app'
+      #     method: 'POST'
+      #     bearerToken: ${{ secrets.AVIATOR_API_TOKEN }}
+      #     data: '{"deployment_id": "${{ inputs.deployment_id }}", "workflow_run_id": "${{ github.run_id }}"}'
           
-      - name: Checkout the repository
-        uses: actions/checkout@v4
-        with:
-          # if custom commit_sha is not defined, this should fall back to the head branch
-          ref: "${{ inputs.commit_sha }}"
-          lfs: true
-          submodules: 'recursive'
+      # - name: Checkout the repository
+      #   uses: actions/checkout@v4
+      #   with:
+      #     # if custom commit_sha is not defined, this should fall back to the head branch
+      #     ref: "${{ inputs.commit_sha }}"
+      #     lfs: true
+      #     submodules: 'recursive'
 
       - name: force failure
         run: exit 1
