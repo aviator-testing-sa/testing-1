@@ -56,7 +56,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
 
-    steps:
+    # steps:
       # - if: inputs.deployment_id != ''
       #   name: Sync workflow run ID via Aviator API
       #   uses: fjogeleit/http-request-action@v1
@@ -74,5 +74,5 @@ jobs:
       #     lfs: true
       #     submodules: 'recursive'
 
-      - name: force failure
-        run: exit 1
+      # - name: force failure
+      #   run: exit 1
