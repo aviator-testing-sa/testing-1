@@ -74,5 +74,5 @@ jobs:
       #     lfs: true
       #     submodules: 'recursive'
 
-      - name: force failure
-        run: exit 1
+      # - name: force failure
+      #   run: exit 1
