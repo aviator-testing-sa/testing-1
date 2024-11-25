@@ -1,0 +1,15 @@
+name: test-python
+
+on:
+  pull_request:
+    paths:
+      - "**.py"
+
+jobs:
+  build:
+    name: "test-python"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: run
+        run: echo "Fake Python test"
