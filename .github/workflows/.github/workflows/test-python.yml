@@ -3,13 +3,13 @@ name: test-python
 on:
   pull_request:
     paths:
-      - "**.py"
+      - "**/*.py"
 
 jobs:
   build:
     name: "test-python"
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - name: run
+      - uses: actions/checkout@v3
+      - name: Run Fake Test
         run: echo "Fake Python test"
