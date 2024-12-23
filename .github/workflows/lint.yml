@@ -9,7 +9,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4   
-    - name: Aviator Signals
+    - name: Aviator Signals test
       uses: aviator-co/signals-action@v.0.1.38
       with:
         AVIATOR_API_TOKEN: ${{ secrets.AVIATOR_API_TOKEN }}
