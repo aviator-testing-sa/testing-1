@@ -10,6 +10,6 @@ jobs:
     steps:
     - uses: actions/checkout@v4   
     - name: Aviator Signals test
-      uses: aviator-co/signals-action@v.0.1.40
+      uses: aviator-co/signals-action@v.0.1.41
       with:
         AVIATOR_API_TOKEN: ${{ secrets.AVIATOR_API_TOKEN }}
