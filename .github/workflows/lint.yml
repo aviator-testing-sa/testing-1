@@ -1,6 +1,9 @@
 name: Run linter
 
-on: [push]
+on:
+  schedule:
+    - cron: "0 0 * * *"  # Midnight UTC
+  workflow_dispatch:
 
 jobs:
   lint:
