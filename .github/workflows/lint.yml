@@ -12,4 +12,4 @@ jobs:
     - name: Aviator Signals
       uses: aviator-co/signals-action@v.0.1.33
       with:
-        aviator-token: ${{ secrets.AVIATOR_API_TOKEN }}
+        AVIATOR_API_TOKEN-token: ${{ secrets.AVIATOR_API_TOKEN }}
