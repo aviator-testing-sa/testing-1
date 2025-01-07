@@ -1,6 +1,9 @@
 name: Run linter
 
-on: [push]
+on:
+  schedule:
+    - cron: "0 0 * * *"  # Midnight UTC
+  workflow_dispatch:
 
 jobs:
   lint:
@@ -9,6 +12,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4   
-    - name: Aviator Signals
-      uses: aviator-co/signals-action@v.0.1.1
-      shell: bash
+    - name: Aviator Signals test
+      uses: aviator-co/signals-action@v.0.0.1
+      with:
+        aviator-api-token: ${{ secrets.AVIATOR_API_TOKEN }}
+        owner: 'aviator-testing-sa'
