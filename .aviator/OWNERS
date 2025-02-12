@@ -1,5 +1,0 @@
-*               @aviator-testing-sa/engineering
-/deploy/        @aviator-testing-sa/engineering-infra
-/frontend/      @aviator-testing-sa/engineering-fe
-/go/            @aviator-testing-sa/engineering-go
-/src/           @aviator-testing-sa/engineering-py
