@@ -1,0 +1,46 @@
+version: 1.0.0
+merge_rules:
+  labels:
+    trigger: mergequeue
+    skip_line: skip-line
+    merge_failed: blocked
+  publish_status_check: true
+  ci_timeout_mins: 10
+  require_all_checks_pass: true
+  preconditions:
+    number_of_approvals: 1
+    conversation_resolution_required: false
+    validations:
+      - name: Require linear ticket in title
+        match:
+          type: title
+          regex:
+            - '^\[MER\-\d+\].+$'
+  merge_mode:
+    type: parallel
+    parallel_mode:
+      max_parallel_builds: 3
+      max_requeue_attempts: 1
+      stuck_pr_label: mq-stuck
+      stuck_pr_timeout_mins: 10
+      block_parallel_builds_label: mq-block
+      check_mergeability_to_queue: true
+      override_required_checks: []
+      require_all_draft_checks_pass: true
+  merge_strategy:
+    name: squash
+  merge_commit:
+    strip_html_comments: true
+  base_branches:
+    - master
+
+scenarios:
+- name: "instant merge"
+  trigger:
+    pull_request:
+      labeled:
+        label: "av-instant-merge"
+        labeled_by: “@aviator-co/leads”
+  actions:
+  - mergequeue:
+      instant_merge: {}
