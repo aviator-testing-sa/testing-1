@@ -34,6 +34,7 @@ def do_something(data: Any) -> int:
 from typing import Optional
 
 def find_user(user_id: Optional[int]) -> str:
+    a = 1
     if user_id is None:
         return "Anonymous"
     return user_id  # Returning an int where a str is expected
