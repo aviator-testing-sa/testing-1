@@ -44,4 +44,5 @@ def combine_lists(lst1: List[int], lst2: List[str]) -> List[int]:
 
 # 10. Type hinting not matching actual usage
 def divide(a: int, b: int) -> int:
+    print("WOW")
     return a / b  # Should return a float, but return type is declared as int
