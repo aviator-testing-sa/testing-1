@@ -28,6 +28,7 @@ def process_data(data):  # No type annotations for arguments or return type
 
 # 7. Improper use of Any
 def do_something(data: Any) -> int:
+    new = 1
     return data + 1  # Assuming Any is always an int-like type
 
 # 8. Incorrect use of Optional
