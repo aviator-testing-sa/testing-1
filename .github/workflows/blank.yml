@@ -1,14 +1,11 @@
 name: CI
 
-# Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the "main" branch
   push:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
 
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
     inputs:
       aviator_release_cut_id:
@@ -24,18 +21,13 @@ on:
         required: true
         type: string
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
   build:
-    # The type of runner that the job will run on
     runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # - if: inputs.aviator_release_cut_id != ''
-      - name: show pipeline number
+      - name: Show pipeline number
         run: echo "name is ${{ inputs.aviator_release_cut_id }}"
+
       - name: Sync workflow run ID via Aviator API
         uses: fjogeleit/http-request-action@v1
         with:
@@ -43,31 +35,31 @@ jobs:
           method: 'POST'
           bearerToken: ${{ secrets.AVIATOR_API_TOKEN }}
           data: '{"release_cut_id": "${{ inputs.aviator_release_cut_id }}", "workflow_run_id": "${{ github.run_id }}"}'
-    
+
       - name: Checkout the repository
         uses: actions/checkout@v4
         with:
-          # if custom commit_sha is not defined, this should fall back to the head branch
           ref: "${{ inputs.aviator_release_cut_commit_hash }}"
           lfs: true
           submodules: 'recursive'
+
   deploy:
     runs-on: ubuntu-latest
-
     steps:
-      - if: inputs.deployment_id != ''
-        name: Sync workflow run ID via Aviator API
+      - name: Show pipeline number
+        run: echo "name is ${{ inputs.aviator_release_cut_id }}"
+
+      - name: Sync workflow run ID via Aviator API
         uses: fjogeleit/http-request-action@v1
         with:
-          url: 'https://7045-50-202-219-97.ngrok-free.app'
+          url: 'https://7045-50-202-219-97.ngrok-free.app/api/v1/sync-build-github-action'
           method: 'POST'
           bearerToken: ${{ secrets.AVIATOR_API_TOKEN }}
-          data: '{"deployment_id": "${{ inputs.deployment_id }}", "workflow_run_id": "${{ github.run_id }}"}'
-          
+          data: '{"release_cut_id": "${{ inputs.aviator_release_cut_id }}", "workflow_run_id": "${{ github.run_id }}"}'
+
       - name: Checkout the repository
         uses: actions/checkout@v4
         with:
-          # if custom commit_sha is not defined, this should fall back to the head branch
-          ref: "${{ inputs.commit_sha }}"
+          ref: "${{ inputs.aviator_release_cut_commit_hash }}"
           lfs: true
           submodules: 'recursive'
