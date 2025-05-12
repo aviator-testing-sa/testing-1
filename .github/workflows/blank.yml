@@ -31,7 +31,7 @@ jobs:
       - name: Sync workflow run ID via Aviator API
         uses: fjogeleit/http-request-action@v1
         with:
-          url: 'https://7045-50-202-219-97.ngrok-free.app/api/v1/sync-build-github-action'
+          url: 'https://c6f2-64-71-1-245.ngrok-free.app/api/v1/sync-build-github-action'
           method: 'POST'
           bearerToken: ${{ secrets.AVIATOR_API_TOKEN }}
           data: '{"release_cut_id": "${{ inputs.aviator_release_cut_id }}", "workflow_run_id": "${{ github.run_id }}"}'
@@ -52,7 +52,7 @@ jobs:
       - name: Sync workflow run ID via Aviator API
         uses: fjogeleit/http-request-action@v1
         with:
-          url: 'https://7045-50-202-219-97.ngrok-free.app/api/v1/sync-build-github-action'
+          url: 'https://c6f2-64-71-1-245.ngrok-free.app/api/v1/sync-build-github-action'
           method: 'POST'
           bearerToken: ${{ secrets.AVIATOR_API_TOKEN }}
           data: '{"release_cut_id": "${{ inputs.aviator_release_cut_id }}", "workflow_run_id": "${{ github.run_id }}"}'
