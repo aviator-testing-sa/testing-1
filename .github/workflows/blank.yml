@@ -8,10 +8,10 @@ on:
 
   workflow_dispatch:
     inputs:
-      aviator_release_cut_id:
-        description: "Database ID of release cut"
-        required: false
-        type: string
+    #   aviator_release_cut_id:
+    #     description: "Database ID of release cut"
+    #     required: false
+    #     type: string
       aviator_release_cut_commit_hash:
         description: "Commit SHA, branch name, or tag of the HEAD to be built"
         required: false
@@ -25,16 +25,16 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Show pipeline number
-        run: echo "name is ${{ inputs.aviator_release_cut_id }}"
+    #   - name: Show pipeline number
+    #     run: echo "name is ${{ inputs.aviator_release_cut_id }}"
 
-      - name: Sync workflow run ID via Aviator API
-        uses: fjogeleit/http-request-action@v1
-        with:
-          url: 'https://c6f2-64-71-1-245.ngrok-free.app/api/v1/sync-build-github-action'
-          method: 'POST'
-          bearerToken: ${{ secrets.AVIATOR_API_TOKEN }}
-          data: '{"release_cut_id": "${{ inputs.aviator_release_cut_id }}", "workflow_run_id": "${{ github.run_id }}"}'
+    #   - name: Sync workflow run ID via Aviator API
+    #     uses: fjogeleit/http-request-action@v1
+    #     with:
+    #       url: 'https://c6f2-64-71-1-245.ngrok-free.app/api/v1/sync-build-github-action'
+    #       method: 'POST'
+    #       bearerToken: ${{ secrets.AVIATOR_API_TOKEN }}
+    #       data: '{"release_cut_id": "${{ inputs.aviator_release_cut_id }}", "workflow_run_id": "${{ github.run_id }}"}'
 
       - name: Checkout the repository
         uses: actions/checkout@v4
@@ -46,16 +46,16 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Show pipeline number
-        run: echo "name is ${{ inputs.aviator_release_cut_id }}"
+    #   - name: Show pipeline number
+    #     run: echo "name is ${{ inputs.aviator_release_cut_id }}"
 
-      - name: Sync workflow run ID via Aviator API
-        uses: fjogeleit/http-request-action@v1
-        with:
-          url: 'https://c6f2-64-71-1-245.ngrok-free.app/api/v1/sync-build-github-action'
-          method: 'POST'
-          bearerToken: ${{ secrets.AVIATOR_API_TOKEN }}
-          data: '{"release_cut_id": "${{ inputs.aviator_release_cut_id }}", "workflow_run_id": "${{ github.run_id }}"}'
+    #   - name: Sync workflow run ID via Aviator API
+    #     uses: fjogeleit/http-request-action@v1
+    #     with:
+    #       url: 'https://c6f2-64-71-1-245.ngrok-free.app/api/v1/sync-build-github-action'
+    #       method: 'POST'
+    #       bearerToken: ${{ secrets.AVIATOR_API_TOKEN }}
+    #       data: '{"release_cut_id": "${{ inputs.aviator_release_cut_id }}", "workflow_run_id": "${{ github.run_id }}"}'
 
       - name: Checkout the repository
         uses: actions/checkout@v4
