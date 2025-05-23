@@ -7,10 +7,10 @@ on:
         description: "Database ID of deployment"
         required: false
         type: string
-    #   aviator_release_cut_commit_hash:
-    #     description: "Commit SHA, branch name, or tag of the HEAD"
-    #     required: false
-    #     type: string
+      aviator_release_cut_commit_hash:
+        description: "Commit SHA, branch name, or tag of the HEAD"
+        required: false
+        type: string
       aviator_release_candidate_version:
         description: "Version to deploy"
         required: true
