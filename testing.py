@@ -2,7 +2,7 @@ from typing import List, Dict, Any
 
 # 1. Function return type mismatch
 def add_numbers(a: int, b: int) -> int:
-    return str(a + b)  # This should return an int but returns a str
+    return str(a + b + b)  # This should return an int but returns a str
 
 # 2. Argument type mismatch
 def greet(name: str) -> str:
